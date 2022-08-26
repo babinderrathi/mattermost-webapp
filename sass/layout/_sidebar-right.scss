@@ -1,10 +1,14 @@
 @charset "utf-8";
 
 .sidebar--right {
-    position: absolute;
+    // resize changes is here
+    position: relative;
+    overflow: hidden;
+    resize: horizontal;
     z-index: 11;
     right: 0;
-    width: 400px;
+    width: 100%;
+    min-width: 300px;
     height: 100%;
     padding: 0;
     transform: translateX(100%);

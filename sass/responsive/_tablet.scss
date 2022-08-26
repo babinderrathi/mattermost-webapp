@@ -29,7 +29,7 @@
                         max-height: calc(100vh - 108px);
                     }
 
-                    >div {
+                    > div {
                         min-width: 250px;
                         font-size: 12px;
                     }
@@ -141,13 +141,11 @@
     }
 
     .channel__wrap {
-
         // indicates the RHS is open
         &.move--left {
-
             // adjust channel header width
             #channel-header {
-                width: calc(100% - 400px);
+                width: 100%;
             }
         }
     }
@@ -223,13 +221,13 @@
     }
 
     .move--left {
-        #post-list {
-            margin-right: 400px;
-        }
+        // #post-list {
+        //     margin-right: 400px;
+        // }
 
         .app__content {
             > .post-create__container {
-                width: calc(100% - 400px);
+                width: 100%;
             }
         }
     }
