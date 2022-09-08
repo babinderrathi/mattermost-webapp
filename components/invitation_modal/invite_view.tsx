@@ -90,7 +90,12 @@ export default function InviteView(props: Props) {
         <button
             onClick={copyText.onClick}
             data-testid='InviteView__copyInviteLink'
-            aria-label='team invite link'
+            aria-label={
+                formatMessage({
+                    id: 'invite_modal.copy_link.url',
+                    defaultMessage: `team invite link ${inviteURL}`,
+                })
+            }
             className='InviteView__copyLink'
         >
             {!copyText.copiedRecently && (
