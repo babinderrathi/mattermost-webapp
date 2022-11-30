@@ -4,6 +4,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import {DraggableProvidedDragHandleProps} from 'react-beautiful-dnd';
+import {useIntl} from 'react-intl';
 
 import {wrapEmojis} from 'utils/emoji_utils';
 
@@ -36,10 +37,41 @@ type Props = StaticProps & {
     isDragging?: boolean;
     isDraggingOver?: boolean;
     muted: boolean;
-    onClick: (event: React.MouseEvent<HTMLElement>) => void;
+    onClick: () => void;
 }
 
 export const SidebarCategoryHeader = React.forwardRef((props: Props, ref?: React.Ref<HTMLButtonElement>) => {
+    const {formatMessage} = useIntl();
+
+    const Collapsed = formatMessage({
+        id: 'sidebar_left.channel.group_header_state.collapsed',
+        defaultMessage: 'is collapsed'});
+
+    const Expanded = formatMessage({
+        id: 'sidebar_left.channel.group_header_state.expanded',
+        defaultMessage: 'is expanded'});
+
+    const [headerState, setHeaderState] = React.useState(Expanded);
+
+    function setCollapsed() {
+        if (props.isCollapsed) {
+            setHeaderState(Expanded);
+        } else {
+            setHeaderState(Collapsed);
+        }
+    }
+
+    function handleState() {
+        props.onClick();
+        setCollapsed();
+    }
+
+    const channelHeader = props.displayName;
+
+    const sidebarHeader = formatMessage({
+        id: 'sidebar_left.channel.group_header_aria',
+        defaultMessage: '{channelHeader}{headerState}'}, {channelHeader, headerState});
+
     return (
         <div
             className={classNames('SidebarChannelGroupHeader', {
@@ -50,8 +82,8 @@ export const SidebarCategoryHeader = React.forwardRef((props: Props, ref?: React
             <button
                 ref={ref}
                 className={classNames('SidebarChannelGroupHeader_groupButton')}
-                aria-label={props.displayName}
-                onClick={props.onClick}
+                aria-label={sidebarHeader}
+                onClick={handleState}
             >
                 <i
                     className={classNames('icon icon-chevron-down', {
