@@ -32,7 +32,7 @@ describe('components/MarkdownImage', () => {
 
     test('should match snapshot', () => {
         const props = {...baseProps, src: '/images/logo.png'};
-        const wrapper = shallow(
+        const wrapper = shallow <MarkdownImage>(
             <MarkdownImage {...props}/>,
         );
 
@@ -281,7 +281,7 @@ describe('components/MarkdownImage', () => {
 
     test('should provide image src as an alt text for MarkdownImageExpand if image has no own alt text', () => {
         const props = {
-            alt: null,
+            alt: undefined,
             title: 'test title',
             className: 'markdown-inline-img',
             postId: 'post_id',
