@@ -10,14 +10,14 @@ export type Props = {
     children: React.ReactNode;
     isExpanded: boolean;
     postId: string;
-    onToggle?: (isExpanded: boolean) => void;
-    actions: {
-        toggleInlineImageVisibility: (postId: string, imageKey: string) => void;
-    };
+    onToggle: (isExpanded: boolean) => void;
 };
+type Actions = {
+    toggleInlineImageVisibility: (postId: string, imageKey: string) => void;
+}
 
-const MarkdownImageExpand: React.FC<Props> = ({children, alt, isExpanded, postId, actions, onToggle, imageKey}: Props) => {
-    const {toggleInlineImageVisibility} = actions;
+const MarkdownImageExpand: React.FC<Props> = ({children, alt, isExpanded, postId, onToggle, imageKey}: Props, actions: Actions) => {
+    const {toggleInlineImageVisibility} = actions as Actions;
 
     useEffect(() => {
         onToggle?.(isExpanded);
