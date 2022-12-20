@@ -20,7 +20,7 @@ type Props = {
         width: number;
         format: string;
     };
-    height: string;
+    height?: string;
     width: string;
     imageIsLink: boolean;
     postId: Post['id'];
@@ -33,7 +33,7 @@ type Props = {
     actions: {
         openModal: <P>(modalData: ModalData<P>) => void;
     };
-    onImageHeightChanged: (isExpanded: boolean) => void;
+    onImageHeightChanged: (isExpanded?: boolean) => void;
 };
 type State = {
     loadFailed: boolean;
